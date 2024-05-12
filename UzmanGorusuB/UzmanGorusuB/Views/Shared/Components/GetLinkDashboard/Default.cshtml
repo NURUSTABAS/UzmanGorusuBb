@@ -1,0 +1,58 @@
+﻿@using EntityLayer.Concrete
+@model List<Link>
+
+@* <div class="row">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Linkleriniz</h4>
+                <div class="d-flex mt-5 align-items-top">
+                    @foreach (var item in Model)
+                    {
+                        <img src="@item.ApplicantImage" class="img-sm rounded-circle mr-3" alt="image">
+<div class="mb-0 flex-grow">
+                            <h5 class="mr-2 mb-2">@item.LinkTitle </h5>
+                            <h5 class="mr-2 mb-2">@item.LinkContent</h5>
+                            <p class="mb-0 font-weight-light">@item.LinkDate</p>
+                        </div>
+                    }
+                    <div class="ml-auto">
+                        <i class="mdi mdi-heart-outline text-muted"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> *@
+
+<div class="col-12 grid-margin">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Linklerim</h4>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th> Başlık </th>
+                            <th> Link </th>
+                            <th> Category </th>
+                            <th> Date </th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td> @item.LinkTitle </td>
+                                <td> @item.LinkContent </td>
+                                <td> @item.Category.CategoryName </td>
+                                <td> @(((DateTime)item.LinkDate).ToString("dd-MMM-yyyy")) </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

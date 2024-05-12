@@ -1,0 +1,29 @@
+﻿@model EntityLayer.Concrete.Link
+@{
+    ViewData["Title"] = "EditLink";
+    Layout = "~/Views/Shared/WriterLayout.cshtml";
+}
+
+<h1>Link Güncelleme</h1>
+@using (Html.BeginForm("EditLink", "Link", FormMethod.Post))
+
+{
+    @Html.LabelFor(x => x.LinkID, new { @class = "visuallyhidden " })
+    @Html.TextBoxFor(x => x.LinkID, new { @class = "visuallyhidden " })
+
+   @*  @Html.Label("Link ıd")
+    @Html.TextBoxFor(x=>x.LinkID, new {@class = "form-control"}) *@
+    <br />
+    @Html.Label("Link Başlığı")
+    @Html.TextBoxFor(x=>x.LinkTitle, new {@class = "form-control"})
+    <br />
+    @Html.Label("Link")
+    @Html.TextBoxFor(x=>x.LinkContent, new {@class = "form-control"})
+    <br />
+    @Html.Label("Link Kategori")
+    @Html.DropDownListFor(x=>x.CategoryID,(List<SelectListItem>)ViewBag.cm,new{@class="form-control"})
+    <br />
+    <button class="btn btn-success">Güncelle</button>
+}
+
+

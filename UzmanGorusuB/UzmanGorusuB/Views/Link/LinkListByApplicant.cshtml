@@ -1,0 +1,46 @@
+﻿@using EntityLayer.Concrete
+@model List<Link>
+@{
+    ViewData["Title"] = "LinkListByApplicant";
+    Layout = "~/Views/Shared/WriterLayout.cshtml";
+}
+
+<h1>Linkleriniz</h1>
+<table class="table table-bordered">
+    <tr>
+
+        <th>Link Başlığı</th>
+        <th>Link</th>
+        <th>Oluşturma Tarihi</th>
+        <th>Kategori</th>
+        <th>Sil</th>
+        <th>Düzenle</th>
+
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.LinkTitle</td>
+            <td>@item.LinkContent</td>
+            <td>@(((DateTime)item.LinkDate).ToString("dd-MMM-yyyy"))</td>
+            <td>@item.Category.CategoryName</td>
+            <td><a href="/Link/DeleteLink/@item.LinkID" class="btn" style="background-color: #01cd74" onclick="confirmDelete(event)">Sil</a></td>
+            <td><a href="/Link/EditLink/@item.LinkID" class="btn" style="background-color: #01cd74">Düzenle</a></td>
+        </tr>
+    }
+</table>
+<a href="/Link/LinkAdd/" class="btn" style="background-color: #01cd74" >Yeni Link Ekle</a>
+
+@*  <script>
+function confirmDelete(event) {
+    if (confirm("Bu kaydı silmek istediğinize emin misiniz?")) {
+        // Kullanıcı "Evet" cevabını verdiğinde silme işlemi gerçekleştir
+        // Buraya silme işlemini gerçekleştirecek olan kodu yazabilirsiniz
+        alert("Kayıt silindi!");
+    } else {
+        // Kullanıcı "Hayır" cevabını verdiğinde bir işlem yapmaya gerek yok
+       event.stopPropagation();
+        alert("Kayıt silinmedi!");
+    }
+}
+</script> *@

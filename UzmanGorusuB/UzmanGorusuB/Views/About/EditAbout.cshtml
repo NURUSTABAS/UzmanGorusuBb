@@ -1,0 +1,31 @@
+﻿@model EntityLayer.Concrete.About
+@{
+    ViewData["Title"] = "EditAbout";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<h1>Hakkımızda </h1>
+@using (Html.BeginForm("EditAbout", "About", FormMethod.Post))
+
+{
+   @*  @Html.LabelFor(x => x.AboutID, new { @class = "visuallyhidden " })
+    @Html.TextBoxFor(x => x.AboutID, new { @class = "visuallyhidden " }) *@
+
+    @*  @Html.Label("Link ıd")
+    @Html.TextBoxFor(x=>x.LinkID, new {@class = "form-control"}) *@
+    <br />
+    @Html.Label("Hakkımızda")
+    @Html.TextBoxFor(x=>x.AboutDetails1, new {@class = "form-control"})
+    <br />
+    @Html.Label("Adres")
+    @Html.TextBoxFor(x=>x.UzmanGorusuAdres, new {@class = "form-control"})
+    <br />
+    @Html.Label("Mail")
+    @Html.TextBoxFor(x=>x.UzmanGorusuMail, new {@class = "form-control"})
+    <br />
+    @Html.Label("Telefon")
+    @Html.TextBoxFor(x=>x.UzmanGorusuTelefon, new {@class = "form-control"})
+    <br />
+    <button class="btn btn-success">Güncelle</button>
+}
+

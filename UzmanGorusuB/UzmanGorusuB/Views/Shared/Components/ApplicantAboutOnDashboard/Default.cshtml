@@ -1,0 +1,52 @@
+﻿@using EntityLayer.Concrete
+@model List<Applicant>
+
+@* <div class="row">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Kullanıcı Hakkında</h4>
+                <div class="d-flex mt-5 align-items-top">
+                    @foreach (var item in Model)
+                    {
+                        <img src="@item.ApplicantImage" class="img-sm rounded-circle mr-3" alt="image">
+                        <div class="mb-0 flex-grow">
+                            <h5 class="mr-2 mb-2">@item.ApplicantName @item.ApplicantSurname </h5>
+                            <h5 class="mr-2 mb-2">@item.ApplicantMail</h5>
+                            <p class="mb-0 font-weight-light">@item.ApplicantAbout</p>
+                        </div>
+                    }
+                    <div class="ml-auto">
+                        <i class="mdi mdi-heart-outline text-muted"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> *@
+<div class="row">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Hakkımda</h4>
+                <h1> Selam @ViewBag.v</h1>
+                <div class="d-flex mt-5 align-items-top">
+                    @foreach(var item in Model)
+                    {
+                        
+                
+                    <img src="@item.ApplicantImage" class="img-sm rounded-circle mr-3" alt="image">
+                    <div class="mb-0 flex-grow">
+                        <h4 class="mr-2 mb-2">@item.ApplicantName @item.ApplicantSurname</h4>
+                        <h5 class="mr-2 mb-2">@item.ApplicantAbout</h5>
+                        <p class="mb-0 font-weight-light">@item.ApplicantMail</p>
+                    </div>
+                    }
+                    <div class="ml-auto">
+                        <i class="mdi mdi-heart-outline text-muted"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

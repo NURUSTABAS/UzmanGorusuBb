@@ -1,0 +1,30 @@
+﻿@using EntityLayer.Concrete
+@model List<Message2>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/WriterLayout.cshtml";
+}
+
+<h1>Gelen Kutusu</h1>
+<table class="table table-bordered">
+    <tr>
+        <th>#</th>
+        <th>Konu</th>
+        <th>Gönderen</th>
+        <th>Tarih</th>
+        <th>Mesajı Aç</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.MessageID</td> @* ID'ler saklamayı dene  *@
+            <td>@item.Subject</td>
+            <td>@item.SenderUser.ApplicantName</td>
+            <td>@(((DateTime)item.MessageDate).ToString("dd-MMM-yyyy"))</td>
+            <td><a href="/Message/MessageDetails/@item.MessageID" class="btn" style="background-color: #01cd74" onclick="confirmDelete(event)">Mesajı AÇ</a></td>
+
+        </tr>
+    }
+</table>
+
+

@@ -1,0 +1,85 @@
+﻿@using EntityLayer.Concrete
+@model List<ApplicantExpert>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<h1>Başvuran Uzmanlar</h1>
+<table class="table table-bordered">
+    <tr>
+
+        <th>Başvuran Kişinin  Adı</th>
+        <th>Başvuran Kişinin Soyadı</th>
+        <th>Başvuran Kişinin Maili </th>
+        <th>Başvuran Kişinin Yaşı</th>
+        <th>Başvuran Kişinin Cinsiyeti</th>
+        <th>Başvuran Kişinin Ünvanı</th>
+        <th>CV Görmek için tıklayın</th>
+        <th>Görüşme Yapıldı Mı</th>
+        <th>Kabul Aldı Mı</th>
+
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.ApplicantExpertName</td>
+            <td>@item.ApplicantExpertName</td>
+            <td>@item.ApplicantExpertMail</td>
+            <td>@item.ApplicantExpertAge</td>
+            <td>@item.ApplicantExpertGender</td>
+            <td>@item.ApplicantExpertTitle</td>
+           
+
+            @*   <td>@item.Category.CategoryName</td *@>
+             <td>
+                <a href="@Url.Action("ViewPDF", "ApplicantExpert", new { userId = item.ApplicantExpertID })" target="_blank">PDF Dosyasını Görüntüle</a>
+            </td>
+            <td><input type="checkbox" id="ApplicantExpert @item.ApplicantExpertID" @(item.Discussed ? "checked" : "") onchange="updateDiscussionStatus('@item.ApplicantExpertID', this.checked)" /></td>
+            <td><input type="checkbox" id="ApplicantExpert @item.ApplicantExpertID" @(item.IsAccpted ? "checked" : "") onchange="updateAcceptanceStatus('@item.ApplicantExpertID', this.checked)" /></td>
+
+        </tr>
+    }
+</table>
+<script> 
+function updateDiscussionStatus(id, checked) {
+    $.ajax({
+        url: '/ApplicantExpert/UpdateDiscussionStatus/' + id,
+        type: 'POST',
+        data: { isDiscussed: checked },
+        success: function(result) {
+            // İşlem başarılı olduğunda yapılacaklar
+        },
+        error: function(xhr, status, error) {
+            // İşlem sırasında hata oluştuğunda yapılacaklar
+        }
+    });
+}
+
+function updateAcceptanceStatus(id, checked) {
+    $.ajax({
+        url: '/ApplicantExpert/UpdateAcceptanceStatus/' + id,
+        type: 'POST',
+        data: { isAccepted: checked },
+        success: function(result) {
+            // İşlem başarılı olduğunda yapılacaklar
+        },
+        error: function(xhr, status, error) {
+            // İşlem sırasında hata oluştuğunda yapılacaklar
+        }
+    });
+}
+    document.getElementById("viewPdfButton").addEventListener("click", function () {
+        var userId = getUserId(); // Kullanıcı kimliğini almak için bir fonksiyon çağırın veya doğrudan tanımlayın
+        var url = "/Admin/ViewPDF?userId=" + userId; // PDF görüntüleme Action'ının URL'sini oluşturun
+        window.open(url, "_blank"); // PDF dosyasını yeni bir sekmede açın
+    });
+
+    function getUserId() {
+        // Kullanıcı kimliğini almak için uygun bir yöntem kullanın
+        // Bu örnek için sabit bir kullanıcı kimliği döndürülebilir veya başka bir yöntem kullanılabilir
+        return 1; // Örnek olarak kullanıcı kimliğini 1 olarak alın
+    }
+
+</script>
+

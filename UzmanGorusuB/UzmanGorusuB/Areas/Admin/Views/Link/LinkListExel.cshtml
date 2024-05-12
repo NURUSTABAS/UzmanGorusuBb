@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewData["Title"] = "LinkListExel";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminAreaLayout.cshtml";
+}
+
+<h1>LinkListExel</h1>
+<br />
+@* <button class="btn btn-primary" onclick="DownloadExcelLinkList">Excel Listesin İndir</button> *@
+<a href="/Admin/Link/ExportStaticExcelLinkList" class="btn btn-primary">Excel Listesini İndir</a>
+@* <script>
+    function DownloadExcelLinkList() {
+        wind.open("/Admin/Link/ExportStaticExcelLinkList");
+    }
+</script> *@

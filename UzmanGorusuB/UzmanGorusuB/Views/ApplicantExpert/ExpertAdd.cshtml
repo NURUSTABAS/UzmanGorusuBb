@@ -1,0 +1,58 @@
+﻿@model UzmanGorusuB.Models.ExpertCv
+@{
+    ViewData["Title"] = "ExpertAdd";
+    Layout = "~/Views/Shared/_UserLayout.cshtml";
+}
+
+
+<form class="form-group" method="post" enctype="multipart/form-data">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Bizimle Çalışmak İster Misiniz </h4>
+                <br />
+                @Html.HiddenFor(x=>x.ApplicantExpertID, new{@class="from-control"})
+                <div class="forms-sample">
+                    <div class="form-group">
+                        <label for="exampleInputName1">İsim</label>
+                        @Html.TextBoxFor(x=>x.ApplicantExpertName, new{@class = "form-control"})
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputSurName1">Soyisim</label>
+                        @Html.TextBoxFor(x=>x.ApplicantExpertSurname, new{@class = "form-control"})
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputAge">Yaş</label>
+                        @Html.TextBoxFor(x=>x.ApplicantExpertAge, new{@class = "form-control"})
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail3">Mail Adresi</label>
+                        @Html.TextBoxFor(x=>x.ApplicantExpertMail, new{@class = "form-control"})
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail3">Ünvanınız</label>
+                        @Html.TextBoxFor(x=>x.ApplicantExpertTitle, new{@class = "form-control"})
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="validationCustom02">Cinsiyetiniz</label>
+                        @Html.DropDownListFor(x => x.ApplicantExpertGender, new List<SelectListItem>
+                        {
+                        new SelectListItem { Text = "Erkek", Value = "Erkek" },
+                        new SelectListItem { Text = "Kadın", Value = "Kadın" },
+                        new SelectListItem { Text = "Diğer", Value = "Diğer" }
+                        }, "Seçiniz", new { @class = "form-control", required = "required" })
+                        @Html.ValidationMessageFor(x => x.ApplicantExpertGender, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <label>Lütfen CV'nizi yükleyin</label>
+                        <input type="file" name="ApplicantExpertCV" />
+                        @Html.ValidationMessageFor(x => x.ApplicantExpertCV, "", new { @class = "text-danger" })
+
+                    </div>
+                    <button type="submit" class="btn btn-gradient-primary mr-2">Kaydet</button>
+                    <button class="btn btn-light">İptal</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,86 @@
+﻿@using EntityLayer.Concrete
+@model List<Applicant>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminAreaLayout.cshtml";
+}
+
+ <h1>Applicant Ajax İşlemleri</h1>
+<br />
+<button type="button" id="btngetlist" class="btn btn-outline-primary">Yazar Listesi</button>
+
+<div id="applicantlist">
+</div>
+
+<br />
+<br />
+<div>
+    <input type="text" id="applicantid" placeholder="Yazar id değerini girin" class="form-control" />
+</div>
+<br />
+<button type="button" id="btngetbyid" class="btn btn-outline-success">Yazar Getir</button>
+
+<br />
+<br />
+
+<br />
+<div id="applicantget">
+</div>
+ 
+
+
+
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+@section scripts {
+    <script>
+        $("#btngetlist").click(function () {
+            $.ajax(
+                {
+                    contentType: "application/json",
+                    dataType: "json",
+                    type: "GET",
+                    url: "/Admin/Applicant/ApplicantList/",
+                    success: function (func) {
+                        let a = jQuery.parseJSON(func);
+                        console.log(a);
+                        let tablehtml = "<table class=table table-bordered> <tr><th>Kullanıcı ID</th> <th> Kullanıcı İsim </th></tr>";
+                        $.each(a, (index, value) => {
+                            tablehtml += `<tr><td>${value.ApplicantID}</td> <td>${value.ApplicantName}</td></tr>`
+                        });
+
+                        tablehtml += "</table>";
+                        $("#applicantlist").html(tablehtml);
+                    }
+                });
+        });
+
+        $("#btngetbyid").click(x => {
+            let id = $("#applicantid").val();
+            $.ajax({
+                contentType: "application/json",
+                dataType: "json",
+                type: "get",
+                url: "/Admin/Applicant/GetApplicantByID/ ",
+                data: { applicantid: id },
+                success: function (func1) {
+                    let a = jQuery.parseJSON(func1);
+                    console.log(a);
+
+                    let getvalue = `<table class="table table-bordered"><tr><th>Kullanıcı ID</th>
+                                                                               <th>Kullnıcı Adı</th> <th> Kullanıcı Soyadı </th> <th> Kullanıcı Maili </th> <th> Kullanıcı Yaşı </th> <th> Kullanıcı Cinsiyeti </th> <th>Kullanıcı Üniversitesi</th>  <th> Kullanıcı Bölümü </th>  </tr>
+                                                                                                               <tr><td>${a.ApplicantID}</td><td>${a.ApplicantName}</td><td>${a.ApplicantSurname}</td><td>${a.ApplicantMail}</td><td>${a.ApplicantAge}</td><td>${a.ApplicantGender}</td><td>${a.ApplicantUniversity}</td><td>${a.ApplicantUniversityDepartment}</td></tr></table>`;
+                    $("#applicantget").html(getvalue)
+
+                }
+            });
+
+        });
+
+       
+
+    </script>
+}
